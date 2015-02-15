@@ -51,7 +51,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 export LC_ALL=en_US.UTF-8
-export PATH="/Users/sergioalvarez/.rvm/gems/ruby-2.1.0/bin:/Users/sergioalvarez/.rvm/gems/ruby-2.1.0@global/bin:/Users/sergioalvarez/.rvm/rubies/ruby-2.1.0/bin:/Users/sergioalvarez/Projects/tools/asciidoctor-fopub:/Users/sergioalvarez/Projects/tools/vowpal_wabbit/vowpalwabbit:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/sergioalvarez/.rvm/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
