@@ -47,12 +47,37 @@ ZSH_THEME="prose"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git mercurial osx brew zsh-syntax-highlighting)
 
-source $ZSH/oh-my-zsh.sh
+# === User configuration ===
 
-# User configuration
-export LC_ALL=en_US.UTF-8
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+bindkey -e
+# End of lines configured by zsh-newuser-install
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '/Users/sergioalvarez/.zshrc'
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# JAVA_HOME
+export JAVA_HOME=`/usr/libexec/java_home`
+
+# NODE_PATH
+export NODE_PATH="/usr/local/lib/node_modules"
+
+# ANDROID
+export ANDROID_HOME="/Users/sergioalvarez/Tools/android-sdk-macosx"
+export PATH="$PATH:/Users/sergioalvarez/Tools/android-sdk-macosx/tools:/Users/sergioalvarez/Tools/android-sdk-macosx/platform-tools"
+
+# RVM
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# ===
+
+source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
