@@ -15,7 +15,7 @@ patches: <patches|join( → )|pre_applied(%{$FX[bold]$FG[231]%})|post_applied(%{
 }
 
 PROMPT='
-🙉  @ %{$FX[bold]$FG[221]%}$(collapse_pwd)%{$reset_color%}$(hg_prompt_info)$(git_prompt_info)
+🙉  @ %{$FX[bold]$FG[111]%}$(collapse_pwd)%{$reset_color%}$(hg_prompt_info)$(git_prompt_info)
 $(virtualenv_info)$%{$reset_color%} '
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$FX[bold]$FG[210]%}"
