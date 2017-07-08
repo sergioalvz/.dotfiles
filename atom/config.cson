@@ -1,0 +1,30 @@
+"*":
+  core:
+    telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "gruvbox-syntax"
+    ]
+  editor:
+    fontSize: 12
+    preferredLineLength: 120
+    showIndentGuide: true
+    showInvisibles: true
+    tabType: "soft"
+  linter: {}
+  "ruby-test":
+    rspecAllCommand: "ssh -tt sweetspot_dev \"cd projects/sweetspot; docker-compose run web bundle exec spec\""
+    rspecFileCommand: "ssh -tt sweetspot_dev \"cd projects/sweetspot; docker-compose run web bundle exec spec {relative_path}\""
+    rspecSingleCommand: "ssh -tt sweetspot_dev \"cd projects/sweetspot; docker-compose run web bundle exec spec {relative_path}:{line_number}\""
+    specFramework: "rspec"
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    syncHorizontalScroll: true
+  "tree-view": {}
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ignoreWhitespaceOnCurrentLine: false
