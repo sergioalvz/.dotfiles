@@ -9,4 +9,4 @@ Some additional plug-ins which *should* be installed:
 ## Themes
 
 The `prose` theme is forked from [My Extravagant Zsh Prompt](http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/) by Steve Losh. It requires the
-[hg-prompt](http://sjl.bitbucket.org/hg-prompt/) extension for showing the Mercurial's promtp.
+[hg-prompt](http://sjl.bitbucket.org/hg-prompt/) extension for showing the Mercurial's prompt.
