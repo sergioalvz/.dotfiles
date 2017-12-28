@@ -1,14 +1,20 @@
+# "nenu" theme by Sergio Álvarez-Suárez
+# 2017
+
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+ZSH_THEME_GIT_PROMPT_DELETED="!"
+ZSH_THEME_GIT_PROMPT_DIRTY=""
+ZSH_THEME_GIT_PROMPT_PREFIX=""
+ZSH_THEME_GIT_PROMPT_MODIFIED="*"
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
+ZSH_THEME_GIT_PROMPT_UNTRACKED="?"
+
 function collapse_pwd {
-  echo $(pwd | sed -e "s,^$HOME,~,")
+    echo $(pwd | sed -e "s,^$HOME,~,")
 }
 
-PROMPT='%{$FX[bold]$FG[111]%}$(collapse_pwd)%{$reset_color%}$(git_prompt_info) '
+function get_git_info {
+    echo "$(git_prompt_info)$(git_prompt_status)"
+}
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$FX[bold]$FG[221]%}("
-ZSH_THEME_GIT_PROMPT_SUFFIX=")%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%%"
-ZSH_THEME_GIT_PROMPT_ADDED="+"
-ZSH_THEME_GIT_PROMPT_MODIFIED="*"
-ZSH_THEME_GIT_PROMPT_RENAMED="~"
-ZSH_THEME_GIT_PROMPT_DELETED="!"
-ZSH_THEME_GIT_PROMPT_UNMERGED="?"
+PROMPT='%{$FX[bold]$FG[221]%}↳%{$reset_color%}  %{$FX[bold]$FG[111]%}$(collapse_pwd)%{$reset_color%}%{$FX[bold]$FG[221]%}($(get_git_info))%{$reset_color%} '
