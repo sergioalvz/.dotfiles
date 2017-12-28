@@ -1,0 +1,19 @@
+{
+    "editor.renderWhitespace": "all",
+    "editor.minimap.enabled": false,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "files.trimTrailingWhitespace": true,
+    "window.zoomLevel": 0,
+    "editor.tabSize": 2,
+    "editor.rulers": [
+        120
+    ],
+    "files.insertFinalNewline": true,
+    "workbench.startupEditor": "none",
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.preferences": {
+        "bem.elementSeparator": "__",
+        "bem.modifierSeparator": "--"
+    }
+}

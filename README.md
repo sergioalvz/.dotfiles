@@ -1,5 +1,11 @@
 # Dotfiles
 
+## VSCode
+
+### Requirements
+
+* [FiraCode](https://github.com/tonsky/FiraCode) font family.
+
 ## ZSH
 
 ### Requirements
