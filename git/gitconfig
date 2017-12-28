@@ -1,0 +1,7 @@
+[user]
+  name = Sergio Álvarez
+  useConfigOnly = true
+[core]
+  excludesfile = ~/.gitignore_global
+[commit]
+  template = ~/.stCommitMsg
