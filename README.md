@@ -1,13 +1,11 @@
 # Dotfiles
 
-My configuration files.
-
 ## ZSH
 
 ### Requirements
 
 * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) framework.
-* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting).
 
 ### Theme
 
