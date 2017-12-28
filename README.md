@@ -1,8 +1,14 @@
 # Dotfiles
 
-Set of configuration files mainly used on the **OS X platform**. It collects files from the following software:
+My configuration files.
 
-* [Zsh](http://www.zsh.org/)
-* [Sublime Text](http://www.sublimetext.com/)
-* [Mercurial](http://mercurial.selenic.com/)
-* [scss-lint](https://github.com/causes/scss-lint)
+## ZSH
+
+### Requirements
+
+* [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) framework.
+* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+
+### Theme
+
+The `esorp` theme is forked from [Steve Losh's "extravagant" prompt](http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/).
