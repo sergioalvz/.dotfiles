@@ -1,12 +1,10 @@
 # ZSH
 
-Set of files for **ZSH**. They require the [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) framework for working successfully.
+## Requirements
 
-Some additional plug-ins which *should* be installed:
-
+* [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) framework.
 * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
-## Themes
+## Theme
 
-The `prose` theme is forked from [My Extravagant Zsh Prompt](http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/) by Steve Losh. It requires the
-[hg-prompt](http://sjl.bitbucket.org/hg-prompt/) extension for showing the Mercurial's prompt.
+The `esorp` theme is forked from [Steve Losh's "extravagant" prompt](http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/).
