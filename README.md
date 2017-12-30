@@ -1,14 +1,13 @@
-# Dotfiles
+# .dotfiles
 
-## VSCode
+This is my personal setup for macOS. It is quite opinionated, so I would not expect it to perfectly fit into your own workflow.
 
-### Requirements
+Please, feel free to download this code and customize whatever you need to make it work :)
 
-* [FiraCode](https://github.com/tonsky/FiraCode) font family.
+## Usage
 
-## ZSH
+Use `make` to run some predefined tasks:
 
-### Requirements
-
-* [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) framework.
-* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting).
+* `make all` installs my whole tooling suite as well as my own dotfiles
+* `make tools` installs only the tooling suite (by using [Homebrew](https://brew.sh))
+* `make dotfiles` installs only the dotfiles (by using symlinks)
