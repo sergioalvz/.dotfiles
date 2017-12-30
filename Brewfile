@@ -3,6 +3,7 @@ brew "zsh"
 
 tap "caskroom/fonts"
 cask "appcleaner"
+cask "firefox"
 cask "font-fira-code"
 cask "google-chrome"
 cask "iterm2"
