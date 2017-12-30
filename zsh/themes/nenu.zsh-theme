@@ -17,4 +17,5 @@ function get_git_info {
   echo "$(git_prompt_info)$(git_prompt_status)"
 }
 
-PROMPT='%{$FX[bold]$FG[221]%}↳%{$reset_color%}  %{$FX[bold]$FG[111]%}$(collapse_pwd)%{$reset_color%}%{$FX[bold]$FG[221]%}$(get_git_info)%{$reset_color%} %{$FX[bold]$FG[197]%}$%{$reset_color%} '
+PROMPT='%{$FX[bold]$FG[221]%}↳%{$reset_color%}  %{$FX[bold]$FG[111]%}$(collapse_pwd)%{$reset_color%}%{$FX[bold]$FG[221]%}$(get_git_info)%{$reset_color%}
+%{$FX[bold]$FG[197]%}$%{$reset_color%} '
