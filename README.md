@@ -2,7 +2,7 @@
 
 This is my personal setup for macOS. It is quite opinionated, so I would not expect it to perfectly fit into your own workflow.
 
-Please, feel free to download this code and customize whatever you need to make it work :)
+Please, feel free to download this code and customize whatever you need to make it work :relaxed:
 
 ## Usage
 
