@@ -1,7 +1,9 @@
 .DEFAULT_GOAL: all
-.PHONY: all dotfiles homebrew nvm tools zsh
+.PHONY: all dotfiles homebrew iterm2 nvm tools zsh
 
 all: tools dotfiles
+
+tools: homebrew iterm2 nvm zsh
 
 dotfiles:
 	ln -nfsv $(CURDIR)/git/gitconfig $(HOME)/.gitconfig
@@ -9,16 +11,17 @@ dotfiles:
 	ln -nfsv $(CURDIR)/vscode/settings.json $(HOME)/Library/Application\ Support/Code/User/settings.json
 	ln -nfsv $(CURDIR)/zsh/zshrc $(HOME)/.zshrc
 	ln -nfsv $(CURDIR)/zsh/themes/nenu.zsh-theme $(HOME)/.oh-my-zsh/themes/nenu.zsh-theme
-	ln -nfsv $(CURDIR)/iterm2/com.googlecode.iterm2.plist $(HOME)/Library/Preferences/com.googlecode.iterm2.plist
 
 homebrew:
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew bundle
 
+iterm2:
+	defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$(CURDIR)/iterm2"
+	defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
 nvm:
 	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
-
-tools: homebrew nvm zsh
 
 zsh:
 	sudo echo $(which zsh) >> /etc/shells
