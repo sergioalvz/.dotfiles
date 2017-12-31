@@ -1,4 +1,5 @@
 brew "git"
+brew "rbenv"
 brew "zsh"
 
 tap "caskroom/fonts"
