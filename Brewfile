@@ -3,6 +3,7 @@ brew "rbenv"
 brew "zsh"
 
 tap "caskroom/fonts"
+
 cask "appcleaner"
 cask "docker"
 cask "firefox"
@@ -12,4 +13,5 @@ cask "google-chrome"
 cask "google-cloud-sdk"
 cask "insomnia"
 cask "iterm2"
+cask "spotify"
 cask "visual-studio-code"
