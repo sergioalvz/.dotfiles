@@ -9,7 +9,7 @@ Please, feel free to download this code and customize whatever you need to make 
 Use `make` to run some predefined tasks:
 
 * `make all` installs the whole tooling suite as well as the dotfiles
-* `make tools` installs only the tooling suite (Brewfile + nvm + zsh)
+* `make tools` installs only the tooling suite ([brew](https://brew.sh), [nvm](https://github.com/creationix/nvm), [zsh](https://en.wikipedia.org/wiki/Z_shell))
 * `make dotfiles` installs only the dotfiles (by using symlinks)
 
 ## Credits
