@@ -1,7 +1,6 @@
 [user]
-  name = Sergio Álvarez
   useConfigOnly = true
 [core]
   excludesfile = ~/.gitignore_global
-[commit]
-  template = ~/.stCommitMsg
+[alias]
+  cleanup = !git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d
