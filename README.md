@@ -1,10 +1,20 @@
 # .dotfiles
 
-This is my personal setup for macOS. It is quite opinionated, so I would not expect it to perfectly fit into your own workflow.
+This is my personal setup for macOS. It is quite opinionated, so I would not expect it to perfectly match your preferences.
 
 Please, feel free to download this code and customize whatever you need to make it work for you :relaxed:
 
 ## Usage
+
+### Download
+
+In case you cannot use `git` to download this repository, use the following `curl` command (which is generally available on a macOS fresh install) to download the project in the current directory:
+
+```
+curl -sL https://github.com/sergioalvz/.dotfiles/archive/master.tar.gz | tar xz
+```
+
+### Install
 
 Use `make` to run some predefined tasks:
 
