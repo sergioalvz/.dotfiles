@@ -4,6 +4,7 @@ brew "zsh"
 
 tap "caskroom/fonts"
 
+cask "1password"
 cask "appcleaner"
 cask "docker"
 cask "firefox"
