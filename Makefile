@@ -11,6 +11,7 @@ dotfiles:
 	mkdir -p $(HOME)/Library/Application\ Support/Code/User && ln -nfsv $(CURDIR)/vscode/settings.json $(HOME)/Library/Application\ Support/Code/User/settings.json
 	ln -nfsv $(CURDIR)/zsh/zshrc $(HOME)/.zshrc
 	ln -nfsv $(CURDIR)/zsh/themes/nenu.zsh-theme $(HOME)/.oh-my-zsh/themes/nenu.zsh-theme
+	ln -nfsv $(CURDIR)/hyper/hyper.js $(HOME)/.hyper.js
 	mkdir -p $(HOME)/.ssh && ln -nfsv $(CURDIR)/ssh/config $(HOME)/.ssh/config
 
 homebrew:
