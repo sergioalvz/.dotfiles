@@ -1,9 +1,9 @@
 .DEFAULT_GOAL: all
-.PHONY: all dotfiles homebrew iterm2 nvm tools zsh
+.PHONY: all dotfiles homebrew nvm tools zsh
 
 all: tools dotfiles
 
-tools: homebrew iterm2 nvm zsh
+tools: homebrew nvm zsh
 
 dotfiles:
 	ln -nfsv $(CURDIR)/git/gitconfig $(HOME)/.gitconfig
@@ -17,10 +17,6 @@ dotfiles:
 homebrew:
 	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew bundle
-
-iterm2:
-	defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$(CURDIR)/iterm2"
-	defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 nvm:
 	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
