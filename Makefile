@@ -1,7 +1,7 @@
 .DEFAULT_GOAL: all
-.PHONY: all dotfiles homebrew nvm tools zsh
+.PHONY: all dotfiles homebrew nvm settings tools zsh
 
-all: tools dotfiles
+all: tools dotfiles settings
 
 tools: homebrew nvm zsh
 
@@ -27,3 +27,8 @@ zsh:
 	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's:env zsh -l::g' | sed 's:chsh -s .*$$::g')"
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $(HOME)/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 	mkdir -p $(HOME)/.oh-my-zsh/custom/plugins/nvm-auto-use && curl https://raw.githubusercontent.com/tomsquest/nvm-auto-use.zsh/master/nvm-auto-use.zsh -o $(HOME)/.oh-my-zsh/custom/plugins/nvm-auto-use/nvm-auto-use.plugin.zsh
+
+# It installs the following settings:
+#  - Enables macOS subpixel antialiasing. This is optional for machines with Retina display.
+settings:
+	defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
