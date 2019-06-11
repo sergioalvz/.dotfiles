@@ -16,5 +16,7 @@
   "window.zoomLevel": 0,
   "workbench.colorTheme": "Night Owl",
   "workbench.startupEditor": "none",
-  "tslint.autoFixOnSave": true
+  "tslint.autoFixOnSave": true,
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false
 }
