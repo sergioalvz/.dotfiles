@@ -19,7 +19,7 @@ homebrew:
 	brew bundle
 
 nvm:
-	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 
 zsh:
 	sudo bash -c "echo $$(which zsh) >> /etc/shells"
