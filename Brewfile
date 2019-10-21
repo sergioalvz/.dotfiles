@@ -3,7 +3,7 @@ brew "git"
 brew "rbenv"
 brew "zsh"
 
-tap "caskroom/fonts"
+tap "homebrew/cask-fonts"
 
 cask "1password"
 cask "appcleaner"
