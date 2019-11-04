@@ -1,4 +1,5 @@
 brew "bat"
+brew "exa"
 brew "git"
 brew "rbenv"
 brew "zsh"
