@@ -18,5 +18,6 @@
   "workbench.startupEditor": "none",
   "tslint.autoFixOnSave": true,
   "workbench.editor.enablePreview": false,
-  "workbench.editor.enablePreviewFromQuickOpen": false
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "terminal.integrated.shell.osx": "/usr/local/bin/zsh"
 }
