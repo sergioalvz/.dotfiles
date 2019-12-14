@@ -16,11 +16,11 @@ curl -sL https://github.com/sergioalvz/.dotfiles/archive/master.tar.gz | tar xz
 
 ### Install
 
-Use `make` to run some predefined tasks:
+Simply execute the `install.sh` script on your terminal of choice:
 
-* `make all` installs the whole tooling suite as well as the dotfiles
-* `make tools` installs only the tooling suite ([brew](https://brew.sh), [nvm](https://github.com/creationix/nvm), [zsh](https://en.wikipedia.org/wiki/Z_shell))
-* `make dotfiles` installs only the dotfiles (by using symlinks)
+```sh
+./install.sh
+```
 
 ## Credits
 
