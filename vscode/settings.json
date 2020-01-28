@@ -1,10 +1,11 @@
 {
-  "editor.fontFamily": "IBM Plex Mono",
-  "editor.fontLigatures": false,
-  "editor.formatOnSave": true,
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontLigatures": true,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
-  "editor.rulers": [120],
+  "editor.rulers": [
+    120
+  ],
   "editor.tabSize": 2,
   "emmet.preferences": {
     "bem.elementSeparator": "__",
@@ -19,5 +20,6 @@
   "tslint.autoFixOnSave": true,
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "terminal.integrated.shell.osx": "/usr/local/bin/zsh"
+  "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+  "editor.formatOnSave": true
 }
