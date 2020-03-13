@@ -3,9 +3,7 @@
   "editor.fontLigatures": true,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
-  "editor.rulers": [
-    120
-  ],
+  "editor.rulers": [120],
   "editor.tabSize": 2,
   "emmet.preferences": {
     "bem.elementSeparator": "__",
@@ -21,5 +19,6 @@
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "files.defaultLanguage": "markdown"
 }
