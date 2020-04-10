@@ -1,7 +1,11 @@
 brew "bat"
+brew "diff-so-fancy"
 brew "exa"
 brew "git"
 brew "rbenv"
+brew "ripgrep"
+brew "tree"
+brew "yarn"
 brew "zsh"
 
 tap "homebrew/cask-fonts"
