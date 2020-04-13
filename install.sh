@@ -25,6 +25,13 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-
 mkdir -p $HOME/.oh-my-zsh/custom/plugins/nvm-auto-use && curl https://raw.githubusercontent.com/tomsquest/nvm-auto-use.zsh/master/nvm-auto-use.zsh -o $HOME/.oh-my-zsh/custom/plugins/nvm-auto-use/nvm-auto-use.plugin.zsh
 
 echo
+echo "Setting up iTerm2..."
+echo
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$(pwd)/iterm2"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
+
+echo
 echo "Installing dotfiles..."
 echo
 ln -nfsv $(pwd)/git/gitconfig $HOME/.gitconfig
