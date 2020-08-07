@@ -19,5 +19,6 @@
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
   "editor.formatOnSave": true,
-  "files.defaultLanguage": "markdown"
+  "files.defaultLanguage": "markdown",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
 }
