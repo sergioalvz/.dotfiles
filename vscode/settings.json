@@ -21,4 +21,13 @@
   "editor.formatOnSave": true,
   "files.defaultLanguage": "markdown",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.format.enable": true,
+  "diffEditor.renderSideBySide": true,
+  "sonarlint.rules": {
+    "typescript:S4123": {
+      "level": "off"
+    }
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "typescript.updateImportsOnFileMove.enabled": "always"
 }
