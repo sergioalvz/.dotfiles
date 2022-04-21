@@ -40,5 +40,4 @@ ln -nfsv $(pwd)/git/gitconfig $HOME/.gitconfig
 ln -nfsv $(pwd)/git/gitignore_global $HOME/.gitignore_global
 mkdir -p $HOME/Library/Application\ Support/Code/User && ln -nfsv $(pwd)/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 ln -nfsv $(pwd)/zsh/zshrc $HOME/.zshrc
-ln -nfsv $(pwd)/hyper/hyper.js $HOME/.hyper.js
 mkdir -p $HOME/.ssh && ln -nfsv $(pwd)/ssh/config $HOME/.ssh/config
