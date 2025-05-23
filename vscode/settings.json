@@ -1,7 +1,7 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.fontFamily": "JetBrains Mono",
-  "editor.fontLigatures": true,
+  "editor.fontFamily": "MonoLisa",
+  "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'",
   "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
@@ -17,17 +17,25 @@
   "files.defaultLanguage": "markdown",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
-  "sonarlint.rules": {
-    "typescript:S4123": {
-      "level": "off"
-    }
-  },
-  "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "window.zoomLevel": 0,
-  "workbench.colorTheme": "Night Owl",
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.startupEditor": "none"
+  "terminal.integrated.fontSize": 16,
+  "editor.fontSize": 16,
+  // Color theme configuration (Catppuccin Mocha)
+  //
+  "workbench.colorTheme": "Catppuccin Mocha",
+  // we try to make semantic highlighting look good
+  "editor.semanticHighlighting.enabled": true,
+  // prevent VSCode from modifying the terminal colors
+  "terminal.integrated.minimumContrastRatio": 1,
+  // make the window's titlebar use the workbench colors
+  "window.titleBarStyle": "custom",
+  "catppuccin.accentColor": "rosewater",
+  "catppuccin.customUIColors": {
+    "mocha": {
+      "statusBar.foreground": "accent"
+    }
+  },
 }
