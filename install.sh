@@ -27,11 +27,8 @@ git clone https://github.com/denysdovhan/spaceship-prompt.git "$HOME/.oh-my-zsh/
 mkdir -p $HOME/.oh-my-zsh/custom/plugins/nvm-auto-use && curl https://raw.githubusercontent.com/tomsquest/nvm-auto-use.zsh/master/nvm-auto-use.zsh -o $HOME/.oh-my-zsh/custom/plugins/nvm-auto-use/nvm-auto-use.plugin.zsh
 
 echo
-echo "Setting up iTerm2..."
-echo
-defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$(pwd)/iterm2"
-defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-
+echo "Setting up Zsh..."
+ln -s "$(pwd)/zsh/zshrc" "$HOME/.zshrc"
 
 echo
 echo "Installing dotfiles..."
