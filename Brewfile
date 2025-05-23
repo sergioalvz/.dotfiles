@@ -1,6 +1,6 @@
 brew "bat"
 brew "diff-so-fancy"
-brew "exa"
+brew "eza"
 brew "git"
 brew "rbenv"
 brew "ripgrep"
