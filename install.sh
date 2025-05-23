@@ -7,11 +7,6 @@ echo
 brew bundle
 
 echo
-echo "Installing nvm..."
-echo
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
-
-echo
 echo "Installing Zsh..."
 echo
 sudo bash -c "echo $(which zsh) >> /etc/shells"
