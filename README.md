@@ -11,7 +11,7 @@ Please, feel free to download this code and customize whatever you need to make 
 In case you cannot use `git` to download this repository, use the following `curl` command (which is generally available on a macOS fresh install) to download the project in the current directory:
 
 ```
-curl -sL https://github.com/sergioalvz/.dotfiles/archive/master.tar.gz | tar xz
+curl -sL https://github.com/sergioalvz/.dotfiles/archive/trunk.tar.gz | tar xz
 ```
 
 ### Install
