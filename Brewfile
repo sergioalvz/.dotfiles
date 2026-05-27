@@ -1,34 +1,33 @@
-brew "bat"
-brew "diff-so-fancy"
-brew "eza"
+# --- CLI tools ---------------------------------------------------------------
+brew "bat"              # cat with syntax highlighting
+brew "eza"              # modern ls
+brew "fd"               # modern find
+brew "fzf"              # fuzzy finder
+brew "gh"               # GitHub CLI (+ copilot extension installed in install.sh)
 brew "git"
+brew "git-delta"        # diff viewer (replaces diff-so-fancy)
 brew "jq"
-brew "nvm"
-brew "rbenv"
+brew "mise"             # runtime manager (replaces nvm + rbenv; reads .nvmrc / .ruby-version / .tool-versions)
 brew "ripgrep"
+brew "starship"         # fast cross-shell prompt (replaces spaceship-prompt)
+brew "tldr"             # community-maintained man-page summaries
 brew "tree"
-brew "yarn"
+brew "yarn"             # kept for legacy Node projects; corepack is preferred for new work
+brew "zoxide"           # smarter `cd` (replaces the `z` oh-my-zsh plugin)
 brew "zsh"
 
+# --- GUI apps ----------------------------------------------------------------
 cask "1password"
+cask "1password-cli"    # required for `op` + 1Password SSH agent integration
 cask "appcleaner"
 cask "coconutbattery"
-cask "docker"
+cask "docker-desktop"
 cask "firefox"
 cask "font-ibm-plex"
+cask "ghostty"
 cask "google-chrome"
-cask "itsycal"
 cask "notion"
-cask "oracle-jdk"
-cask "qlcolorcode"
-cask "qlmarkdown"
-cask "qlstephen"
-cask "qlvideo"
-cask "quicklookase"
-cask "quicklook-json"
 cask "slack"
 cask "spotify"
 cask "suspicious-package"
 cask "visual-studio-code"
-cask "vlc"
-cask "warp"

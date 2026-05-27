@@ -1,29 +1,56 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+echo
+echo "Installing Xcode Command Line Tools..."
+echo
+if ! xcode-select -p &>/dev/null; then
+  xcode-select --install || true
+  echo "Re-run this script once the Xcode CLT installer finishes."
+  exit 0
+else
+  echo "Xcode Command Line Tools are already installed."
+fi
 
 echo
 echo "Installing Homebrew..."
 echo
-if ! command -v brew &> /dev/null; then
+if ! command -v brew &>/dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  # Make brew available in this shell immediately (Apple Silicon path)
+  if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
 else
   echo "Homebrew is already installed."
 fi
-brew bundle
+brew bundle --file="$DOTFILES_DIR/Brewfile"
 
 echo
-echo "Installing Zsh..."
+echo "Installing GitHub Copilot CLI extension..."
 echo
-# Use a more reliable way to check if zsh is in /etc/shells
-if ! grep -q "$(which zsh)" /etc/shells &> /dev/null; then
+if command -v gh &>/dev/null; then
+  if ! gh extension list | grep -q "github/gh-copilot"; then
+    gh extension install github/gh-copilot || echo "Skipped (run 'gh auth login' first, then 'gh extension install github/gh-copilot')."
+  else
+    echo "gh-copilot extension is already installed."
+  fi
+fi
+
+echo
+echo "Configuring Zsh..."
+echo
+if ! grep -q "$(which zsh)" /etc/shells &>/dev/null; then
   sudo bash -c "echo $(which zsh) >> /etc/shells"
 else
   echo "Zsh is already in /etc/shells."
 fi
 
-# Only change shell if not already using zsh
 if [ "$SHELL" != "$(which zsh)" ]; then
   echo "Changing default shell to Zsh..."
-  chsh -s $(which zsh)
+  chsh -s "$(which zsh)"
 else
   echo "Zsh is already the default shell."
 fi
@@ -37,7 +64,7 @@ else
   echo "Oh My Zsh is already installed."
 fi
 
-# Install zsh-syntax-highlighting plugin if not already installed
+# zsh-syntax-highlighting
 if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
   echo "Installing zsh-syntax-highlighting plugin..."
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
@@ -45,7 +72,7 @@ else
   echo "zsh-syntax-highlighting plugin is already installed."
 fi
 
-# Install zsh-autosuggestions plugin if not already installed
+# zsh-autosuggestions
 if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
   echo "Installing zsh-autosuggestions plugin..."
   git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
@@ -53,41 +80,32 @@ else
   echo "zsh-autosuggestions plugin is already installed."
 fi
 
-# Install spaceship-prompt theme if not already installed
-if [ ! -d "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt" ]; then
-  echo "Installing spaceship-prompt theme..."
-  git clone https://github.com/denysdovhan/spaceship-prompt.git "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt"
-  # Create symlink only if theme directory exists
-  if [ -d "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt" ]; then
-    ln -sf "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme" "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
-  fi
-else
-  echo "spaceship-prompt theme is already installed."
-  # Ensure symlink exists
-  if [ ! -L "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme" ] && [ -d "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt" ]; then
-    ln -sf "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme" "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
-  fi
-fi
+echo
+echo "Symlinking dotfiles..."
+echo
+ln -nfsv "$DOTFILES_DIR/git/gitconfig"        "$HOME/.gitconfig"
+ln -nfsv "$DOTFILES_DIR/git/gitignore_global" "$HOME/.gitignore_global"
+ln -nfsv "$DOTFILES_DIR/zsh/zshrc"            "$HOME/.zshrc"
 
-# Install nvm-auto-use plugin if not already installed
-mkdir -p "$HOME/.oh-my-zsh/custom/plugins/nvm-auto-use"
-if [ ! -f "$HOME/.oh-my-zsh/custom/plugins/nvm-auto-use/nvm-auto-use.plugin.zsh" ]; then
-  echo "Installing nvm-auto-use plugin..."
-  curl -s https://raw.githubusercontent.com/tomsquest/nvm-auto-use.zsh/master/nvm-auto-use.zsh -o "$HOME/.oh-my-zsh/custom/plugins/nvm-auto-use/nvm-auto-use.plugin.zsh"
-else
-  echo "nvm-auto-use plugin is already installed."
-fi
+mkdir -p "$HOME/Library/Application Support/Code/User"
+ln -nfsv "$DOTFILES_DIR/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
+
+mkdir -p "$HOME/.ssh"
+ln -nfsv "$DOTFILES_DIR/ssh/config"           "$HOME/.ssh/config"
 
 echo
-echo "Installing dotfiles..."
-echo
-# These commands are already idempotent with ln -nfsv
-ln -nfsv "$(pwd)/git/gitconfig" "$HOME/.gitconfig"
-ln -nfsv "$(pwd)/git/gitignore_global" "$HOME/.gitignore_global"
-mkdir -p "$HOME/Library/Application Support/Code/User" && ln -nfsv "$(pwd)/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
-ln -nfsv "$(pwd)/zsh/zshrc" "$HOME/.zshrc"
-mkdir -p "$HOME/.ssh" && ln -nfsv "$(pwd)/ssh/config" "$HOME/.ssh/config"
+read -r -p "Apply opinionated macOS defaults (key repeat, Finder, Dock)? [y/N] " response
+if [[ "$response" =~ ^[Yy]$ ]]; then
+  bash "$DOTFILES_DIR/macos/defaults.sh"
+fi
 
 echo
 echo "Installation completed successfully!"
+echo "Next steps:"
+echo "  1. Restart your terminal (or 'exec zsh') to load the new shell config."
+echo "  2. Run 'gh auth login' if you haven't already."
+echo "  3. Sign in to 1Password and enable the SSH agent in Settings > Developer."
+echo "     The SSH key syncs from your vault; commit signing is already configured."
+echo "  4. Set per-repo git identity:  git config user.email you@example.com"
+echo "  5. Install runtimes with mise, e.g. 'mise use --global node@lts python@3.13 ruby@3.3'."
 echo
