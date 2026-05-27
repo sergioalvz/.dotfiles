@@ -58,8 +58,17 @@ fi
 echo
 echo "Installing Oh My Zsh..."
 echo
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+if [ ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
+  # If a previous partial install left the directory behind, move it aside so
+  # the installer doesn't refuse to run, then merge any custom/ content back.
+  if [ -d "$HOME/.oh-my-zsh" ]; then
+    mv "$HOME/.oh-my-zsh" "$HOME/.oh-my-zsh.bak.$$"
+  fi
+  KEEP_ZSHRC=yes RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+  if [ -d "$HOME/.oh-my-zsh.bak.$$/custom" ]; then
+    cp -R "$HOME/.oh-my-zsh.bak.$$/custom/." "$HOME/.oh-my-zsh/custom/"
+    rm -rf "$HOME/.oh-my-zsh.bak.$$"
+  fi
 else
   echo "Oh My Zsh is already installed."
 fi
