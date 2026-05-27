@@ -1,7 +1,83 @@
 [user]
+  # Force user.name/user.email to be set per-repo (via includeIf or `git config`).
+  # Prevents accidental commits with a wrong identity.
   useConfigOnly = true
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFOByGTxZ9/1+RC0oIUpGMcLg5AlvIncqbV9nrf83n60
+
+[init]
+  defaultBranch = main
+
 [core]
-	excludesfile = ~/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+  excludesfile = ~/.gitignore_global
+  pager = delta
+  editor = code --wait
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true        # n/N to move between diff sections
+  line-numbers = true
+  syntax-theme = Catppuccin Mocha
+
+[merge]
+  conflictstyle = zdiff3 # better 3-way conflict markers
+
+[diff]
+  algorithm = histogram
+  colorMoved = default
+  mnemonicPrefix = true
+  renames = true
+
+[pull]
+  rebase = true
+
+[push]
+  default = simple
+  autoSetupRemote = true
+  followTags = true
+
+[fetch]
+  prune = true
+  pruneTags = true
+
+[rebase]
+  autoStash = true
+  autoSquash = true
+  updateRefs = true
+
+[rerere]
+  enabled = true
+  autoUpdate = true
+
+[branch]
+  sort = -committerdate  # most recent branches first in `git branch`
+
+[column]
+  ui = auto
+
+[help]
+  autocorrect = prompt
+
 [alias]
-  cleanup = !(git pull && git fetch --prune origin && git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d)
+  # Pull, prune remote-tracking branches, then delete local branches whose upstream is gone.
+  cleanup = !(git pull && git fetch --prune origin && git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs -r git branch -d)
+  st = status -sb
+  co = checkout
+  br = branch
+  last = log -1 HEAD --stat
+  graph = log --oneline --graph --decorate --all
+  unstage = reset HEAD --
+  amend = commit --amend --no-edit
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgsign = true

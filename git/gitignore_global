@@ -1,2 +1,26 @@
-*~
+# --- macOS --------------------------------------------------------------
 .DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+
+# --- Editor / IDE -------------------------------------------------------
+# Note: project-level .vscode/ and .idea/ are intentionally NOT ignored here —
+# many teams commit shared editor settings. Ignore them per-project if needed.
+*~
+*.swp
+*.swo
+*.code-workspace
+
+# --- AI assistants (local-only context) ---------------------------------
+.aider*
+.claude/
+.copilot/
+
+# --- Secrets ------------------------------------------------------------
+.env.local
+.env.*.local
+
+# --- Logs / tmp ---------------------------------------------------------
+*.log
+.tmp/
