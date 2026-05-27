@@ -1,9 +1,10 @@
 # --- CLI tools ---------------------------------------------------------------
 brew "bat"              # cat with syntax highlighting
+brew "copilot-cli"      # GitHub Copilot in the terminal (replaces the deprecated `gh copilot` extension)
 brew "eza"              # modern ls
 brew "fd"               # modern find
 brew "fzf"              # fuzzy finder
-brew "gh"               # GitHub CLI (+ copilot extension installed in install.sh)
+brew "gh"               # GitHub CLI
 brew "git"
 brew "git-delta"        # diff viewer (replaces diff-so-fancy)
 brew "jq"

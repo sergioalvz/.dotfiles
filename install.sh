@@ -29,17 +29,6 @@ fi
 brew bundle --file="$DOTFILES_DIR/Brewfile"
 
 echo
-echo "Installing GitHub Copilot CLI extension..."
-echo
-if command -v gh &>/dev/null; then
-  if ! gh extension list | grep -q "github/gh-copilot"; then
-    gh extension install github/gh-copilot || echo "Skipped (run 'gh auth login' first, then 'gh extension install github/gh-copilot')."
-  else
-    echo "gh-copilot extension is already installed."
-  fi
-fi
-
-echo
 echo "Configuring Zsh..."
 echo
 if ! grep -q "$(which zsh)" /etc/shells &>/dev/null; then

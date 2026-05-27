@@ -32,7 +32,7 @@ curl -sL https://github.com/sergioalvz/.dotfiles/archive/trunk.tar.gz | tar xz
 ## Post-install
 
 1. `exec zsh` to reload the shell.
-2. `gh auth login` to authenticate the GitHub CLI (then the `gh copilot` extension is ready to use).
+2. `gh auth login` to authenticate the GitHub CLI. The standalone **copilot-cli** (`copilot`) ships via Homebrew and uses the same Copilot entitlement.
 3. Sign in to **1Password** and enable the SSH agent: **Settings → Developer → Use the SSH agent**. Your SSH key syncs from the vault — no key files needed on disk. Commit signing is already wired up in [git/gitconfig](git/gitconfig); the first commit on a new machine will prompt for Touch ID.
 4. Set per-repo git identity (kept out of the global config on purpose):
    ```sh
