@@ -1,32 +1,50 @@
 # .dotfiles
 
-This is my personal setup for macOS. It is quite opinionated, so I would not expect it to perfectly match your preferences.
+My personal macOS setup. Opinionated; download and tweak to taste.
 
-Please, feel free to download this code and customize whatever you need to make it work for you :relaxed:
+## What's inside
+
+| File                                         | Purpose                                                                                                                                  |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| [Brewfile](Brewfile)                         | Homebrew formulae + casks (CLI tools, fonts, GUI apps)                                                                                   |
+| [install.sh](install.sh)                     | Idempotent bootstrap: Xcode CLT → Homebrew → zsh + oh-my-zsh plugins → symlinks → optional macOS defaults                                |
+| [zsh/zshrc](zsh/zshrc)                       | Shell: oh-my-zsh + **starship** prompt, **mise** runtime manager, **zoxide**, **fzf** keybindings, 1Password SSH agent                   |
+| [git/gitconfig](git/gitconfig)               | Modern git defaults (delta pager, `pull.rebase`, `rerere`, `branch.sort`, `push.autoSetupRemote`) + SSH commit/tag signing via 1Password |
+| [git/gitignore_global](git/gitignore_global) | macOS / editor / AI-assistant junk                                                                                                       |
+| [ssh/config](ssh/config)                     | Routes all SSH auth through the 1Password SSH agent                                                                                      |
+| [vscode/settings.json](vscode/settings.json) | Editor + Copilot/Chat configuration                                                                                                      |
+| [macos/defaults.sh](macos/defaults.sh)       | Optional `defaults write` tweaks (fast key repeat, Finder, Dock, screenshots)                                                            |
 
 ## Usage
 
-### Download
-
-In case you cannot use `git` to download this repository, use the following `curl` command (which is generally available on a macOS fresh install) to download the project in the current directory:
-
-```
-curl -sL https://github.com/sergioalvz/.dotfiles/archive/trunk.tar.gz | tar xz
-```
-
-### Install
-
-Simply execute the `install.sh` script on your terminal of choice:
-
 ```sh
+git clone https://github.com/sergioalvz/.dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
 ./install.sh
 ```
 
+No `git`? Use `curl`:
+
+```sh
+curl -sL https://github.com/sergioalvz/.dotfiles/archive/trunk.tar.gz | tar xz
+```
+
+## Post-install
+
+1. `exec zsh` to reload the shell.
+2. `gh auth login` to authenticate the GitHub CLI (then the `gh copilot` extension is ready to use).
+3. Sign in to **1Password** and enable the SSH agent: **Settings → Developer → Use the SSH agent**. Your SSH key syncs from the vault — no key files needed on disk. Commit signing is already wired up in [git/gitconfig](git/gitconfig); the first commit on a new machine will prompt for Touch ID.
+4. Set per-repo git identity (kept out of the global config on purpose):
+   ```sh
+   git config user.name  "Sergio Álvarez"
+   git config user.email "you@example.com"
+   ```
+   Or use `includeIf` blocks in `~/.gitconfig` for work-vs-personal directories.
+5. Install runtimes with **mise** (reads `.nvmrc`, `.ruby-version`, `.tool-versions`):
+   ```sh
+   mise use --global node@lts python@3.13 ruby@3.3
+   ```
+
 ## Credits
 
-This repo has been _heavily_ inspired one way or another by:
-
-* **[@dgsuarez](https://github.com/dgsuarez/.dotfiles)**
-* **[@jessfraz](https://github.com/jessfraz/dotfiles)**
-* **[@sjl](https://bitbucket.org/sjl/dotfiles)**
-* **[@holman](https://github.com/holman/dotfiles)**
+Heavily inspired by **[@dgsuarez](https://github.com/dgsuarez/.dotfiles)**, **[@jessfraz](https://github.com/jessfraz/dotfiles)**, **[@sjl](https://bitbucket.org/sjl/dotfiles)**, and **[@holman](https://github.com/holman/dotfiles)**.
