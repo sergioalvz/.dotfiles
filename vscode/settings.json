@@ -7,6 +7,9 @@
   "editor.renderWhitespace": "all",
   "editor.rulers": [120],
   "editor.tabSize": 2,
+  "editor.stickyScroll.enabled": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.suggest.preview": true,
   "eslint.format.enable": true,
   "emmet.preferences": {
     "bem.elementSeparator": "__",
@@ -22,15 +25,13 @@
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.iconTheme": "material-icon-theme",
   "terminal.integrated.fontSize": 16,
+  "terminal.integrated.defaultProfile.osx": "zsh",
   "editor.fontSize": 16,
-  // Color theme configuration (Catppuccin Mocha)
-  //
+
+  // --- Color theme (Catppuccin Mocha) ---------------------------------
   "workbench.colorTheme": "Catppuccin Mocha",
-  // we try to make semantic highlighting look good
   "editor.semanticHighlighting.enabled": true,
-  // prevent VSCode from modifying the terminal colors
   "terminal.integrated.minimumContrastRatio": 1,
-  // make the window's titlebar use the workbench colors
   "window.titleBarStyle": "custom",
   "catppuccin.accentColor": "rosewater",
   "catppuccin.customUIColors": {
@@ -38,4 +39,24 @@
       "statusBar.foreground": "accent"
     }
   },
+
+  // --- GitHub Copilot --------------------------------------------------
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": true,
+    "markdown": true,
+    "scminput": false
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.chat.codesearch.enabled": true,
+  "github.copilot.chat.followUps": "always",
+  "github.copilot.chat.localeOverride": "en",
+  "github.copilot.chat.scopeSelection": true,
+  "github.copilot.chat.search.semanticTextResults": true,
+  "github.copilot.chat.editor.temporalContext.enabled": true,
+  "github.copilot.chat.edits.temporalContext.enabled": true,
+  "github.copilot.chat.agent.thinkingTool": true,
+  "chat.agent.enabled": true,
+  "chat.tools.autoApprove": false,
+  "chat.commandCenter.enabled": true
 }
