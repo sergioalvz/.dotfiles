@@ -1,4 +1,12 @@
+# SSH keys are managed by the 1Password SSH agent.
+# Enable it in: 1Password > Settings > Developer > "Use the SSH agent".
+# The SSH_AUTH_SOCK env var is exported from ~/.zshrc.
+
 Host *
     AddKeysToAgent yes
     UseKeychain yes
-    IdentityFile ~/.ssh/id_rsa
+    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+Host github.com
+    User git
+    PreferredAuthentications publickey
