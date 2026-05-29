@@ -22,12 +22,10 @@ export LANG=en_US.UTF-8
 export EDITOR="code --wait"
 export VISUAL="$EDITOR"
 
-# --- Aliases -----------------------------------------------------------------
-alias ls="eza"
-alias ll="eza -la --git --icons"
-alias lt="eza --tree --level=2 --icons"
-alias cat="bat --paging=never"
-alias g="git"
+# --- Shared aliases ----------------------------------------------------------
+_dotfiles_dir="$(dirname "$(readlink "$HOME/.zshrc")")"
+source "$_dotfiles_dir/../zsh/aliases.zsh"
+unset _dotfiles_dir
 
 # --- Runtime manager (mise) --------------------------------------------------
 # Replaces nvm + rbenv. Reads .nvmrc, .ruby-version, .python-version, .tool-versions.

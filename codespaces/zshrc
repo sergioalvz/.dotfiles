@@ -1,0 +1,21 @@
+# --- oh-my-zsh ---------------------------------------------------------------
+export ZSH=$HOME/.oh-my-zsh
+ZSH_THEME=""
+
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+source $ZSH/oh-my-zsh.sh
+
+# --- User configuration ------------------------------------------------------
+export LANG=en_US.UTF-8
+export EDITOR="code --wait"
+export VISUAL="$EDITOR"
+
+# --- Shared aliases ----------------------------------------------------------
+_dotfiles_dir="$(dirname "$(readlink "$HOME/.zshrc")")"
+source "$_dotfiles_dir/../zsh/aliases.zsh"
+unset _dotfiles_dir
+
+# --- Prompt (must be last) ---------------------------------------------------
+if command -v starship &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
