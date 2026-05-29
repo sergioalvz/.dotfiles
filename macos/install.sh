@@ -76,13 +76,19 @@ else
 fi
 
 echo
-echo "Symlinking dotfiles..."
+echo "Linking dotfiles..."
 echo
-ln -nfsv "$DOTFILES_DIR/macos/gitconfig"        "$HOME/.gitconfig"
+
+# ~/.gitconfig is generated (not symlinked) so that commands like
+# `git config --global` write to an untracked file instead of into the repo.
+cat > "$HOME/.gitconfig" <<EOF
+[include]
+  path = $DOTFILES_DIR/git/gitconfig_shared
+  path = $DOTFILES_DIR/macos/gitconfig
+EOF
+
 ln -nfsv "$DOTFILES_DIR/git/gitignore_global"   "$HOME/.gitignore_global"
 ln -nfsv "$DOTFILES_DIR/macos/zshrc"             "$HOME/.zshrc"
-
-git config --global include.path "$DOTFILES_DIR/git/gitconfig_shared"
 
 mkdir -p "$HOME/Library/Application Support/Code/User"
 ln -nfsv "$DOTFILES_DIR/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"

@@ -45,13 +45,19 @@ else
 fi
 
 echo
-echo "Symlinking dotfiles..."
+echo "Linking dotfiles..."
 echo
-ln -nfsv "$DOTFILES_DIR/codespaces/gitconfig"   "$HOME/.gitconfig"
+
+# ~/.gitconfig is generated (not symlinked) so that commands like
+# `git config --global` write to an untracked file instead of into the repo.
+cat > "$HOME/.gitconfig" <<EOF
+[include]
+  path = $DOTFILES_DIR/git/gitconfig_shared
+  path = $DOTFILES_DIR/codespaces/gitconfig
+EOF
+
 ln -nfsv "$DOTFILES_DIR/git/gitignore_global"   "$HOME/.gitignore_global"
 ln -nfsv "$DOTFILES_DIR/codespaces/zshrc"       "$HOME/.zshrc"
-
-git config --global include.path "$DOTFILES_DIR/git/gitconfig_shared"
 
 echo
 echo "Codespaces setup completed!"
