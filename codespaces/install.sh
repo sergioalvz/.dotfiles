@@ -36,6 +36,15 @@ else
 fi
 
 echo
+echo "Setting Zsh as default shell..."
+echo
+if [ "$SHELL" != "$(which zsh)" ]; then
+  sudo chsh -s "$(which zsh)" "$(whoami)"
+else
+  echo "Zsh is already the default shell."
+fi
+
+echo
 echo "Installing Starship prompt..."
 echo
 if ! command -v starship &>/dev/null; then
@@ -58,6 +67,11 @@ EOF
 
 ln -nfsv "$DOTFILES_DIR/git/gitignore_global"   "$HOME/.gitignore_global"
 ln -nfsv "$DOTFILES_DIR/codespaces/zshrc"       "$HOME/.zshrc"
+
+# VS Code machine-level settings so font + shell profile apply in Codespaces.
+VSCODE_MACHINE_DIR="$HOME/.vscode-remote/data/Machine"
+mkdir -p "$VSCODE_MACHINE_DIR"
+ln -nfsv "$DOTFILES_DIR/vscode/settings.json" "$VSCODE_MACHINE_DIR/settings.json"
 
 echo
 echo "Codespaces setup completed!"

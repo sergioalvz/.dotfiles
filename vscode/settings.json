@@ -13,7 +13,7 @@
   "eslint.format.enable": true,
   "emmet.preferences": {
     "bem.elementSeparator": "__",
-    "bem.modifierSeparator": "--"
+    "bem.modifierSeparator": "--",
   },
   "emmet.triggerExpansionOnTab": true,
   "diffEditor.renderSideBySide": true,
@@ -24,8 +24,10 @@
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.iconTheme": "material-icon-theme",
+  "terminal.integrated.fontFamily": "MonoLisa, 'MesloLGS NF', 'Hack Nerd Font', monospace",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.defaultProfile.linux": "zsh",
   "editor.fontSize": 16,
 
   // --- Color theme (Catppuccin Mocha) ---------------------------------
@@ -36,8 +38,8 @@
   "catppuccin.accentColor": "rosewater",
   "catppuccin.customUIColors": {
     "mocha": {
-      "statusBar.foreground": "accent"
-    }
+      "statusBar.foreground": "accent",
+    },
   },
 
   // --- GitHub Copilot --------------------------------------------------
@@ -45,7 +47,7 @@
     "*": true,
     "plaintext": true,
     "markdown": true,
-    "scminput": false
+    "scminput": false,
   },
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.chat.codesearch.enabled": true,
@@ -58,5 +60,6 @@
   "github.copilot.chat.agent.thinkingTool": true,
   "chat.agent.enabled": true,
   "chat.tools.autoApprove": false,
-  "chat.commandCenter.enabled": true
+  "chat.commandCenter.enabled": true,
+  "workbench.startupEditor": "none",
 }
