@@ -1,6 +1,5 @@
 # --- CLI tools ---------------------------------------------------------------
 brew "bat"              # cat with syntax highlighting
-brew "copilot-cli"      # GitHub Copilot in the terminal (replaces the deprecated `gh copilot` extension)
 brew "eza"              # modern ls
 brew "fd"               # modern find
 brew "fzf"              # fuzzy finder
@@ -22,6 +21,7 @@ cask "1password"
 cask "1password-cli"    # required for `op` + 1Password SSH agent integration
 cask "appcleaner"
 cask "coconutbattery"
+cask "copilot-cli"      # GitHub Copilot in the terminal (replaces the deprecated `gh copilot` extension)
 cask "docker-desktop"
 cask "firefox"
 cask "font-ibm-plex"
