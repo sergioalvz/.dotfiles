@@ -17,5 +17,8 @@ unset _dotfiles_dir
 
 # --- Prompt (must be last) ---------------------------------------------------
 if command -v starship &>/dev/null; then
+  _dotfiles_prompt_dir="$(dirname "$(readlink "$HOME/.zshrc")")"
+  export STARSHIP_CONFIG="$_dotfiles_prompt_dir/starship.toml"
+  unset _dotfiles_prompt_dir
   eval "$(starship init zsh)"
 fi
