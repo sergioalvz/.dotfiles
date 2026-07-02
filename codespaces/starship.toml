@@ -1,4 +1,2 @@
-command_timeout = 2000
-
 [localip]
 disabled = true
