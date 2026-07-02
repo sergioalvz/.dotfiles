@@ -17,6 +17,8 @@ source "$_dotfiles_dir/../zsh/aliases.zsh"
 # --- Prompt (must be last) ---------------------------------------------------
 if command -v starship &>/dev/null; then
   export STARSHIP_CONFIG="$_dotfiles_dir/starship.toml"
+  unset _dotfiles_dir
   eval "$(starship init zsh)"
+else
+  unset _dotfiles_dir
 fi
-unset _dotfiles_dir
