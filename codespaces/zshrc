@@ -13,9 +13,12 @@ export VISUAL="$EDITOR"
 # --- Shared aliases ----------------------------------------------------------
 _dotfiles_dir="$(dirname "$(readlink "$HOME/.zshrc")")"
 source "$_dotfiles_dir/../zsh/aliases.zsh"
-unset _dotfiles_dir
 
 # --- Prompt (must be last) ---------------------------------------------------
 if command -v starship &>/dev/null; then
+  export STARSHIP_CONFIG="$_dotfiles_dir/starship.toml"
+  unset _dotfiles_dir
   eval "$(starship init zsh)"
+else
+  unset _dotfiles_dir
 fi
