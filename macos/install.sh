@@ -81,20 +81,112 @@ echo
 
 # ~/.gitconfig is generated (not symlinked) so that commands like
 # `git config --global` write to an untracked file instead of into the repo.
-cat > "$HOME/.gitconfig" <<EOF
+gitconfig_content=$(cat <<EOF
 [include]
   path = $DOTFILES_DIR/git/gitconfig_shared
   path = $DOTFILES_DIR/macos/gitconfig
 EOF
+)
 
-ln -nfsv "$DOTFILES_DIR/git/gitignore_global"   "$HOME/.gitignore_global"
-ln -nfsv "$DOTFILES_DIR/macos/zshrc"             "$HOME/.zshrc"
+is_link_to() {
+  [[ -L "$1" && "$(readlink "$1")" == "$2" ]]
+}
+
+gitconfig_is_current() {
+  [[ -f "$HOME/.gitconfig" && ! -L "$HOME/.gitconfig" ]] &&
+    cmp -s "$HOME/.gitconfig" <(printf '%s\n' "$gitconfig_content")
+}
+
+replacement_targets=()
+add_replacement_target() {
+  local destination="$1"
+  local source="${2:-}"
+
+  if [[ -e "$destination" || -L "$destination" ]]; then
+    if [[ -n "$source" ]] && is_link_to "$destination" "$source"; then
+      return
+    fi
+    if [[ "$destination" == "$HOME/.gitconfig" ]] && gitconfig_is_current; then
+      return
+    fi
+    replacement_targets+=("$destination")
+  fi
+}
+
+add_replacement_target "$HOME/.gitconfig"
+add_replacement_target "$HOME/.gitignore_global" "$DOTFILES_DIR/git/gitignore_global"
+add_replacement_target "$HOME/.zshrc" "$DOTFILES_DIR/macos/zshrc"
+add_replacement_target "$HOME/Library/Application Support/Code/User/settings.json" \
+  "$DOTFILES_DIR/vscode/settings.json"
+add_replacement_target "$HOME/.ssh/config" "$DOTFILES_DIR/ssh/config"
+
+replace_existing_files=false
+if (( ${#replacement_targets[@]} > 0 )); then
+  echo "The following existing files differ from the dotfiles and would be replaced:"
+  printf '  %s\n' "${replacement_targets[@]}"
+  response=""
+  if [[ -r /dev/tty ]]; then
+    read -r -p "Back up and replace these files? [y/N] " response </dev/tty
+  else
+    echo "No terminal available; preserving existing files."
+  fi
+  if [[ "$response" =~ ^[Yy]$ ]]; then
+    replace_existing_files=true
+  fi
+fi
+
+backup_existing() {
+  local destination="$1"
+  local backup="$destination.backup.$(date +%Y%m%d%H%M%S).$$"
+  local suffix=1
+
+  while [[ -e "$backup" || -L "$backup" ]]; do
+    backup="$destination.backup.$(date +%Y%m%d%H%M%S).$$.$suffix"
+    ((suffix += 1))
+  done
+  mv "$destination" "$backup"
+  echo "Backed up $destination to $backup"
+}
+
+install_symlink() {
+  local source="$1"
+  local destination="$2"
+
+  if is_link_to "$destination" "$source"; then
+    return
+  fi
+  if [[ -e "$destination" || -L "$destination" ]]; then
+    if [[ "$replace_existing_files" != true ]]; then
+      echo "Preserving existing file: $destination"
+      return
+    fi
+    backup_existing "$destination"
+  fi
+  ln -nfsv "$source" "$destination"
+}
+
+if gitconfig_is_current; then
+  echo "Global Git configuration is already up to date."
+elif [[ -e "$HOME/.gitconfig" || -L "$HOME/.gitconfig" ]]; then
+  if [[ "$replace_existing_files" == true ]]; then
+    backup_existing "$HOME/.gitconfig"
+    printf '%s\n' "$gitconfig_content" > "$HOME/.gitconfig"
+  else
+    echo "Preserving existing file: $HOME/.gitconfig"
+  fi
+else
+  printf '%s\n' "$gitconfig_content" > "$HOME/.gitconfig"
+fi
+
+install_symlink "$DOTFILES_DIR/git/gitignore_global" "$HOME/.gitignore_global"
+install_symlink "$DOTFILES_DIR/macos/zshrc" "$HOME/.zshrc"
 
 mkdir -p "$HOME/Library/Application Support/Code/User"
-ln -nfsv "$DOTFILES_DIR/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
+install_symlink "$DOTFILES_DIR/vscode/settings.json" \
+  "$HOME/Library/Application Support/Code/User/settings.json"
 
 mkdir -p "$HOME/.ssh"
-ln -nfsv "$DOTFILES_DIR/ssh/config"           "$HOME/.ssh/config"
+install_symlink "$DOTFILES_DIR/ssh/config" "$HOME/.ssh/config"
 
 echo
 read -r -p "Apply opinionated macOS defaults (key repeat, Finder, Dock)? [y/N] " response

@@ -12,6 +12,10 @@ cd ~/.dotfiles
 ./install.sh
 ```
 
+The installer leaves existing dotfiles in place unless you confirm replacement.
+If you approve, it makes timestamped backups before replacing them. macOS
+defaults are a separate optional prompt.
+
 **Codespaces** — select this repo under [Dotfiles settings](https://github.com/settings/codespaces). New codespaces pick it up automatically.
 
 ## Credits
