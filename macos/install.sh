@@ -81,12 +81,13 @@ echo
 
 # ~/.gitconfig is generated (not symlinked) so that commands like
 # `git config --global` write to an untracked file instead of into the repo.
-gitconfig_content=$(cat <<EOF
+write_gitconfig() {
+  cat <<EOF
 [include]
   path = $DOTFILES_DIR/git/gitconfig_shared
   path = $DOTFILES_DIR/macos/gitconfig
 EOF
-)
+}
 
 is_link_to() {
   [[ -L "$1" && "$(readlink "$1")" == "$2" ]]
@@ -94,7 +95,7 @@ is_link_to() {
 
 gitconfig_is_current() {
   [[ -f "$HOME/.gitconfig" && ! -L "$HOME/.gitconfig" ]] &&
-    cmp -s "$HOME/.gitconfig" <(printf '%s\n' "$gitconfig_content")
+    cmp -s "$HOME/.gitconfig" <(write_gitconfig)
 }
 
 replacement_targets=()
@@ -126,7 +127,9 @@ if (( ${#replacement_targets[@]} > 0 )); then
   printf '  %s\n' "${replacement_targets[@]}"
   response=""
   if [[ -r /dev/tty ]]; then
-    read -r -p "Back up and replace these files? [y/N] " response </dev/tty
+    if ! read -r -p "Back up and replace these files? [y/N] " response </dev/tty; then
+      response=""
+    fi
   else
     echo "No terminal available; preserving existing files."
   fi
@@ -170,12 +173,12 @@ if gitconfig_is_current; then
 elif [[ -e "$HOME/.gitconfig" || -L "$HOME/.gitconfig" ]]; then
   if [[ "$replace_existing_files" == true ]]; then
     backup_existing "$HOME/.gitconfig"
-    printf '%s\n' "$gitconfig_content" > "$HOME/.gitconfig"
+    write_gitconfig > "$HOME/.gitconfig"
   else
     echo "Preserving existing file: $HOME/.gitconfig"
   fi
 else
-  printf '%s\n' "$gitconfig_content" > "$HOME/.gitconfig"
+  write_gitconfig > "$HOME/.gitconfig"
 fi
 
 install_symlink "$DOTFILES_DIR/git/gitignore_global" "$HOME/.gitignore_global"
